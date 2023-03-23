@@ -6,7 +6,7 @@ import apiAuth from "../../services/apiAuth";
 import { Container, Form, Input, Button, StyledLink } from "./style";
 
 export default function LoginPages() {
-    const [form, setForm] = useState({ email: "", password: "" });
+    /* const [form, setForm] = useState({ email: "", password: "" });
     const { user,setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -30,6 +30,12 @@ export default function LoginPages() {
                 alert(`Erro: err.response.data`);
                 console.log(err.response.data.message);
             });
+    } */
+    const navigate = useNavigate();
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        navigate("/subscriptions");
     }
 
     return (
@@ -41,17 +47,17 @@ export default function LoginPages() {
                     type="email"
                     placeholder="E-mail"
                     name="email"
-                    onChange={handleForm}
-                    value={form.email}
-                    requerid 
+                    //onChange={handleForm}
+                    //value={form.email}
+                    //requerid 
                 />
                 <Input
                     type="password"
                     placeholder="Senha"
                     name="password"
-                    onChange={handleForm}
-                    value={form.password}
-                    required 
+                    //onChange={handleForm}
+                    //value={form.password}
+                    //required 
                 />
 
                 <Button type="submit">

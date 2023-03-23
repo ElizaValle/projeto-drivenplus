@@ -14,7 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LoginPages />} />
           <Route path="/sign-up" element={<RegisterPages />} />
-          <Route path="/subscriptions" element={<SubscriptionsPages />} />
+          <Route path="/subscriptions/idPlan" element={<SubscriptionsPages />} />
           <Route path="/" />
         </Routes>
       </UserContext.Provider>

@@ -17,12 +17,13 @@ export const Container = styled.div`
     }
 `
 
-export const PlanOne = styled.div`
+export const Plans = styled.div`
     width: 290px;
     height: 180px;
     margin-left: 43px;
     margin-bottom: 10px;
     border: 3px solid #7E7E7E;
+    background-color: #0E0E13;
     border-radius: 12px;
     display: flex;
     justify-content: space-around;
@@ -34,12 +35,13 @@ export const PlanOne = styled.div`
     }
 `
 
-export const PlanTwo = styled.div`
+export const PlanOne = styled.button`
     width: 290px;
     height: 180px;
     margin-left: 43px;
     margin-bottom: 10px;
     border: 3px solid #7E7E7E;
+    background-color: #0E0E13;
     border-radius: 12px;
     display: flex;
     justify-content: space-around;
@@ -51,12 +53,31 @@ export const PlanTwo = styled.div`
     }
 `
 
-export const PlanThree = styled.div`
+export const PlanTwo = styled.button`
+    width: 290px;
+    height: 180px;
+    margin-left: 43px;
+    margin-bottom: 10px;
+    border: 3px solid #7E7E7E;
+    background-color: #0E0E13;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    span {
+        font-weight: 700;
+        font-size: 24px;
+        color: #FFFFFF;
+    }
+`
+
+export const PlanThree = styled.button`
     width: 290px;
     height: 180px;
     margin-left: 43px;
     margin-bottom: 16px;
     border: 3px solid #7E7E7E;
+    background-color: #0E0E13;
     border-radius: 12px;
     display: flex;
     justify-content: space-around;
