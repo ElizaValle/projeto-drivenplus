@@ -10,10 +10,15 @@ function createConfig(token) {
     }
 }
 
-function signPlan(token) {
-    const promise = axios.get(`${BASE_URL}/memberships/idPlan`, createConfig(token));
+function renders(token) {
+    const promise = axios.get(`${BASE_URL}`, createConfig(token));
     return promise;
 }
 
-const apiPlan = { signPlan };
+function signPlan(token, idPlan) { 
+    const promise = axios.get(`${BASE_URL}/memberships/${idPlan}`, createConfig(token));
+    return promise;
+}
+
+const apiPlan = { renders, signPlan };
 export default apiPlan;

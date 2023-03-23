@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import logo1 from "../../assets/group1.png";
 import logo2 from "../../assets/group2.png";
 import logo3 from "../../assets/group3.png";
@@ -10,10 +10,11 @@ import { Container, Plans } from "./style";
 export default function SubscriptionsPages() {
     const [plans, setPlans] = useState();
     const { user } = useContext(UserContext);
+    const { idPlan } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        apiPlan.signPlan(user.token)
+        apiPlan.renders(user.token)
             .then(res => {
                 setPlans(res.data);
             })
@@ -22,7 +23,7 @@ export default function SubscriptionsPages() {
             });
     }, [user.token]);
 
-    function handlePlanClick(idPlan) {
+    function handlePlanClick() {
         navigate(`/subscriptions/${idPlan}`);
     }
 
