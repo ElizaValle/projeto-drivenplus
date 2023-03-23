@@ -35,7 +35,7 @@ export const Plans = styled.div`
     }
 `
 
-export const PlanOne = styled.button`
+/* export const PlanOne = styled.button`
     width: 290px;
     height: 180px;
     margin-left: 43px;
@@ -87,4 +87,4 @@ export const PlanThree = styled.button`
         font-size: 24px;
         color: #FFFFFF;
     }
-`
+` */

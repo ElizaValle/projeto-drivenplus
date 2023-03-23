@@ -12,7 +12,21 @@ export default function SubscriptionsPages() {
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
-    useEffect(getPlans, []);
+    useEffect(() => {
+        apiPlan.signPlan(user.token)
+            .then(res => {
+                setPlans(res.data);
+            })
+            .catch(err => {
+                alert(err.response);
+            });
+    }, [user.token]);
+
+    function handlePlanClick(idPlan) {
+        navigate(`/subscriptions/${idPlan}`);
+    }
+
+    /* useEffect(getPlans, []);
 
     function getPlans() {
         apiPlan.signPlan(user.token)
@@ -24,30 +38,31 @@ export default function SubscriptionsPages() {
             .catch(err => {
                 alert(err.response);
             });
-    }
+    } */
 
     return (
         <Container>
             <p>Escolha seu Plano</p>
             {plans && plans.map((plan) => (
-                <Plans 
-                    key={plan.id} 
-                    type="submit"
-                    id={plan.id}
-                    image={plan.image}
-                    price={plan.price}
-                />
+                <Plans>
+                    <Plan 
+                        key={plan.id} 
+                        image={plan.image}
+                        price={plan.price}
+                        onClick={() => handlePlanClick(plan.id)}
+                    />
+                </Plans>
             ))}        
         </Container>
     );
 }
 
-function Plan({ image, price }) {
+function Plan({ image, price, onClick }) {
     return (
-        <>
+        <div onClick={onClick}>
             <img src={image} alt="logo driven" />
             <span>{price}</span>
-        </>
+        </div>
     );
 }
 
