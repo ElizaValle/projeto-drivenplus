@@ -28,9 +28,8 @@ export default function SubscriptionsList() {
         <Container>
             <p>Escolha seu Plano</p>
             {plans && plans.map((plan) => (
-                <Plans>
+                <Plans key={plan.id}>
                     <Plan 
-                        key={plan.id} 
                         image={plan.image}
                         price={plan.price}
                         onClick={() => handlePlanClick(plan.id)}
