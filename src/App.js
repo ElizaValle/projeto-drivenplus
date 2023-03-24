@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from "./contexts/UserContext";
 import LoginPages from "./pages/Login/LoginPages";
 import RegisterPages from "./pages/Register/RegisterPages";
-import SubscriptionsPages from "./pages/Subscriptions/SubscriptionsPages";
+import SubscriptionPlan from "./pages/Subscriptions/SubscriptionPlan";
+import SubscriptionsList from "./pages/Subscriptions/SubscriptionsList";
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -14,8 +15,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LoginPages />} />
           <Route path="/sign-up" element={<RegisterPages />} />
-          <Route path="/subscriptions/:idPlan" element={<SubscriptionsPages />} />
-          <Route path="/" />
+          <Route path="/subscriptions" element={<SubscriptionsList />  }/>
+          <Route path="/subscriptions/:idPlan" element={<SubscriptionPlan />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

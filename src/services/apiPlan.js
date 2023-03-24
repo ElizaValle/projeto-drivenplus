@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions";
+const BASE_URL = "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships";
 
 function createConfig(token) {
     return {
@@ -16,7 +16,7 @@ function renders(token) {
 }
 
 function signPlan(token, idPlan) { 
-    const promise = axios.get(`${BASE_URL}/memberships/${idPlan}`, createConfig(token));
+    const promise = axios.get(`${BASE_URL}/${idPlan}`, createConfig(token));
     return promise;
 }
 
