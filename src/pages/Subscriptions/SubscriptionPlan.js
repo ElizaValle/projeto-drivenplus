@@ -19,19 +19,20 @@ export default function SubscriptionPlan() {
         perks: []
     });
     const { user } = useContext(UserContext);
+    const { idPlan } = useParams();
     const navigate = useNavigate();
 
     console.log(plan)
 
     useEffect(() => {
-        apiPlan.signPlan(user.token, /* .id */)
+        apiPlan.signPlan(user.token, idPlan)
             .then(res => {
                 setPlan(res.data);
             })
             .catch(err => {
                 alert(err.response);
             });
-    }, [user.token, /* .id */]);
+    }, [user.token, idPlan]);
 
     function toSign() {
         navigate("/home");
