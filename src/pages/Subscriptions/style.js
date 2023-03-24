@@ -27,12 +27,13 @@ export const Plans = styled.div`
     background-color: #0E0E13;
     border-radius: 12px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     span {
         font-weight: 700;
         font-size: 24px;
         color: #FFFFFF;
+        padding-left: 21px;
     }
 `
 export const Container2 = styled.div`
