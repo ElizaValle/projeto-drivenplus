@@ -20,8 +20,8 @@ function displayPlan(token, idPlan) {
     return promise;
 }
 
-function signPlan(token) {
-    const promise = axios.post(`${BASE_URL}`, createConfig(token));
+function signPlan(token, body) {
+    const promise = axios.post(`${BASE_URL}`, body, createConfig(token));
     return promise;
 }
 

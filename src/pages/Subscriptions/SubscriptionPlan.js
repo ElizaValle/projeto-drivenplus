@@ -81,8 +81,11 @@ export default function SubscriptionPlan() {
                         <p>Benefícios:</p>
                     </div>
                     <ol>
-                        <Link><li>{plan.perks.title}</li></Link>
-                        <Link><li>{plan.perks.title}</li></Link>
+                        {plan.perks.map((perk) => (
+                            <li key={perk.id}>
+                                <Link>{perk.title}</Link>
+                            </li>
+                        ))}
                     </ol>
                 </Benefits>
 
