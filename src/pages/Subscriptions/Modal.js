@@ -3,11 +3,11 @@ import { BACKGROUND_STYLE, MODAL_STYLE, BUTTON_STYLE} from "./styleModal";
 import { useNavigate } from "react-router-dom";
 import apiPlan from "../../services/apiPlan";
 
-export default function Modal({ isOpen, plan, form, setModalOpen }) {
+export default function Modal({ isOpen, plan, token, form, setModalOpen }) {
     const navigate = useNavigate();
 
     function sendRequest() {
-        apiPlan.signUp(form)
+        apiPlan.signPlan(token, form)
             .then(() => {
                 navigate("/home");
             })

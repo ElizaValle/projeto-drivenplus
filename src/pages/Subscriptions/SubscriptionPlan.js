@@ -13,8 +13,9 @@ import apiPlan from "../../services/apiPlan";
 import Modal from "./Modal";
 
 export default function SubscriptionPlan() {
+    const { idPlan } = useParams();
     const [form, setForm] = useState({
-        membershipId: "",
+        membershipId: idPlan,
         cardName: "",
         cardNumber: "",
         securityNumber: "",
@@ -29,7 +30,6 @@ export default function SubscriptionPlan() {
     });
     const [openModal, setOpenModal] = useState(false);
     const { user } = useContext(UserContext);
-    const { idPlan } = useParams();
     //const navigate = useNavigate();
 
     console.log(plan)
@@ -138,6 +138,7 @@ export default function SubscriptionPlan() {
                     <Modal 
                         isOpen={openModal}
                         plan={plan} 
+                        form={form}
                         setModalOpen={() => setOpenModal(!openModal)} 
                     />
                 </Form>
