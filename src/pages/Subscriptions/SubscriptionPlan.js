@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import vector from "../../assets/vector.png";
 import money from "../../assets/money.png";
 import seta from "../../assets/seta.png";
@@ -9,7 +9,6 @@ import {
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import apiPlan from "../../services/apiPlan";
-//import apiAuth from "../../services/apiAuth";
 import Modal from "./Modal";
 
 export default function SubscriptionPlan() {
@@ -30,7 +29,6 @@ export default function SubscriptionPlan() {
     });
     const [openModal, setOpenModal] = useState(false);
     const { user } = useContext(UserContext);
-    //const navigate = useNavigate();
 
     console.log(plan)
 
@@ -51,19 +49,6 @@ export default function SubscriptionPlan() {
     function toSign(e) {
         e.preventDefault();
         setOpenModal(true);
-
-        //se clicar botão SIM ==> requisição é enviada
-
-
-       /*  apiAuth.signUp(form)
-            .then(() => {
-                setOpenModal(true);
-                navigate("/home");
-            })
-            .catch(err => {
-                setOpenModal(false);
-                alert(err.response.data);
-            }); */
     }
 
     return (
@@ -139,6 +124,7 @@ export default function SubscriptionPlan() {
                         isOpen={openModal}
                         plan={plan} 
                         form={form}
+                        token={user.token}
                         setModalOpen={() => setOpenModal(!openModal)} 
                     />
                 </Form>
