@@ -1,13 +1,13 @@
 import fechar from "../../assets/fechar.png";
 import { BACKGROUND_STYLE, MODAL_STYLE, BUTTON_STYLE} from "./styleModal";
-import apiAuth from "../../services/apiAuth";
 import { useNavigate } from "react-router-dom";
+import apiPlan from "../../services/apiPlan";
 
 export default function Modal({ isOpen, plan, form, setModalOpen }) {
     const navigate = useNavigate();
 
     function sendRequest() {
-        apiAuth.signUp(form)
+        apiPlan.signUp(form)
             .then(() => {
                 navigate("/home");
             })
