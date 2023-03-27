@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/driven.png"
 import { UserContext } from "../../contexts/UserContext";
@@ -7,6 +7,8 @@ import { Container, Form, Input, Button, StyledLink } from "./style";
 
 export default function LoginPages() {
     const [form, setForm] = useState({ email: "", password: "" });
+    const [hasPlan, setHasPlan] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
     const { user,setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -24,13 +26,27 @@ export default function LoginPages() {
                 console.log(res.data);
                 const { id, name, cpf, email, membership, token } = res.data;
                 setUser({ id, name, cpf, email, membership, token });
-                navigate("/subscriptions");
+                //navigate("/subscriptions");
+                if(membership !== null) {
+                    setHasPlan(true);
+                }
+                setLoggedIn(true);
             })
             .catch(err => {
                 alert(`Erro: err.response.data`);
                 console.log(err.response.data.message);
             });
     } 
+
+    useEffect(() => {
+        if(loggedIn) {
+            if(hasPlan) {
+                navigate("/home");
+            } else {
+                navigate("/subscriptions");
+            }
+        }
+    })
 
     return (
         <Container>
