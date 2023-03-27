@@ -9,8 +9,17 @@ import {
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import apiPlan from "../../services/apiPlan";
+//import apiAuth from "../../services/apiAuth";
+import Modal from "./Modal";
 
 export default function SubscriptionPlan() {
+    const [form, setForm] = useState({
+        membershipId: "",
+        cardName: "",
+        cardNumber: "",
+        securityNumber: "",
+        expirationDate: ""
+    });
     const [plan, setPlan] = useState({
         id: null,
         name: "",
@@ -18,14 +27,15 @@ export default function SubscriptionPlan() {
         price: "",
         perks: []
     });
+    const [openModal, setOpenModal] = useState(false);
     const { user } = useContext(UserContext);
     const { idPlan } = useParams();
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     console.log(plan)
 
-    useEffect(() => {
-        apiPlan.signPlan(user.token, idPlan)
+    useEffect(() => { 
+        apiPlan.displayPlan(user.token, idPlan)
             .then(res => {
                 setPlan(res.data);
             })
@@ -34,8 +44,26 @@ export default function SubscriptionPlan() {
             });
     }, [user.token, idPlan]);
 
-    function toSign() {
-        navigate("/home");
+    function handleForm(e) {
+        setForm({...form, [e.target.name]: e.target.value});
+    }
+
+    function toSign(e) {
+        e.preventDefault();
+        setOpenModal(true);
+
+        //se clicar botão SIM ==> requisição é enviada
+
+
+       /*  apiAuth.signUp(form)
+            .then(() => {
+                setOpenModal(true);
+                navigate("/home");
+            })
+            .catch(err => {
+                setOpenModal(false);
+                alert(err.response.data);
+            }); */
     }
 
     return (
@@ -70,24 +98,45 @@ export default function SubscriptionPlan() {
                     <Input
                         type="text"
                         placeholder="Nome impresso no cartão" 
+                        name="cardName"
+                        value={form.cardName}
+                        onChange={handleForm}
+                        required
                     />
                     <Input
                         type="number"
                         placeholder="Digitos do cartão" 
+                        name="cardNumber"
+                        value={form.cardNumber}
+                        onChange={handleForm}
+                        required
                     />
                     <Inputs>
                         <Input
                             type="number"
                             placeholder="Código de segurança" 
+                            name="securityNumber"
+                            value={form.securityNumber}
+                            onChange={handleForm}
+                            required
                         />
                         <Input
                             //type="date"
-                            placeholder="Validade" 
+                            placeholder="Validade"
+                            name="expirationDate"
+                            value={form.expirationDate}
+                            onChange={handleForm}
+                            required 
                         />
                     </Inputs>
                     <Button type="submit">
                         ASSINAR
                     </Button>
+                    <Modal 
+                        isOpen={openModal}
+                        plan={plan} 
+                        setModalOpen={() => setOpenModal(!openModal)} 
+                    />
                 </Form>
             </Perks>
         </Container2>
